@@ -100,7 +100,7 @@ fn main() {
     let (tx, rx) = bounded(1);
 
     for source in config.clone().sources.into_iter() {
-        println!("Starting recording from '{}'", source.description);
+        println!("Recording from '{}'", source.description);
         let tx = tx.clone();
 
         thread::spawn(move || {
@@ -109,7 +109,7 @@ fn main() {
                 "MusicIO",
                 Direction::Record,
                 Some(&source.name),
-                &format!("Recording (MusicIO) - {}", source.description),
+                &source.description,
                 &spec,
                 None,
                 None,
@@ -133,14 +133,14 @@ fn main() {
         });
     }
 
-    println!("Playback to null sink");
+    println!("Playback to {}", config.output.name);
 
     let simple = match Simple::new(
         None,
         "MusicIO",
         Direction::Playback,
         Some(&config.output.name),
-        "Playback to null sink",
+        &config.output.name,
         &spec,
         None,
         None,
@@ -148,8 +148,8 @@ fn main() {
         Ok(n) => n,
         Err(e) => {
             match e.into() {
-                Code::NoEntity => println!("NoEntity ({}) returned by PulseAudio - are you sure the null sink exists?", e.0),
-                n => println!("{:?} ({}) returned by PulseAudio - error connecting to the server for null sink", n, e.0),
+                Code::NoEntity => println!("NoEntity ({}) returned by PulseAudio - are you sure the sink '{}' exists?", e.0, config.output.name),
+                n => println!("{:?} ({}) returned by PulseAudio - error connecting to the server for sink '{}'", n, e.0, config.output.name),
             }
             return;
         }
