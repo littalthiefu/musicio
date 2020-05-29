@@ -1,0 +1,10 @@
+[Unit]
+Description=Music IO
+After=network.target
+
+[Service]
+StandardOutput=journal+console
+ExecStart=/usr/bin/musicio
+
+[Install]
+WantedBy=multi-user.target

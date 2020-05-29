@@ -1,0 +1,15 @@
+[package]
+name = "musicio"
+version = "0.1.0"
+authors = ["Alsan Ali <alsanali@protonmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+crossbeam-channel = "0.4"
+directories = "2.0"
+libpulse-binding = "2.16"
+libpulse-simple-binding = "2.16"
+serde = { version = "1.0", features = ["derive"] }
+toml = "0.5"
