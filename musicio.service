@@ -7,4 +7,4 @@ StandardOutput=journal+console
 ExecStart=/usr/bin/musicio
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=pulseaudio.target

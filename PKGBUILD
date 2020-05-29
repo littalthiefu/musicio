@@ -27,4 +27,5 @@ build() {
 package() {
 	cd "$srcdir/${pkgname}"
 	install -Dm 755 target/release/musicio -t "${pkgdir}/usr/bin"
+	install -Dm 755 musicio.service -t "${pkgdir}/usr/lib/systemd/user"
 }
