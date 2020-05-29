@@ -1,7 +1,11 @@
 # MusicIO
 A program that combines multiple audio sources and plays it back to an output (e.g. a sink).
+## Installation
+Clone the repository and run `cargo install`. Copy the systemd unit file to the directory `/usr/lib/systemd/user`. Run `systemctl --user daemon-reload` so that systemd loads the unit file.
+
+If you're an Arch user, you can use the PKGBUILD file instead. You still have to reload daemons with this way.
 ## Starting
-On installation, a systemd user unit (musicio.service) will be created. Start/enable it by doing `systemctl --user start musicio.service`.
+Start/enable the systemd unit by doing `systemctl --user start musicio.service`.
 
 Also check `systemctl --user status musicio.service` to ensure there were no errors.
 ## Configuration
